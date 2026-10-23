@@ -1,33 +1,41 @@
-# Virtual Gaming Hub — código-fonte
+# Game VM Manager — Free Fire + Roblox
 
-Aplicativo Windows Forms em C#/.NET 8 para iniciar/parar uma VM VirtualBox já existente, abrir Roblox instalado no Windows e mostrar notas de compatibilidade para Free Fire.
+Projeto Windows Forms em C#/.NET 8. A interface:
+- inicia e solicita o desligamento de uma VM Android já criada no VirtualBox;
+- abre Roblox instalado no Windows (nativo), ou permite localizar o executável.
 
-## Limitações
-Não é um emulador Android nem instala os jogos. Roblox é aberto nativamente no Windows, não dentro da VM. Free Fire pode não funcionar em Android-x86/VirtualBox; não há garantia de compatibilidade.
+## Importante sobre compatibilidade
+Este é um gerenciador, não um emulador Android. A VM não é instalada automaticamente. Free Fire pode não funcionar em VirtualBox/Android-x86, e não há garantia de compatibilidade ou desempenho. Para jogar Roblox no Windows, o aplicativo abre a versão nativa instalada; não tenta executar Roblox dentro da VM Android.
 
 ## Requisitos
-- Windows 10/11 64 bits
-- .NET 8 SDK para compilar
-- VirtualBox e uma VM configurada para usar a função de PC virtual
-- Roblox instalado pelo site oficial: https://www.roblox.com/download
+- Windows 10/11 64-bit.
+- .NET 8 SDK para compilar.
+- Oracle VirtualBox apenas se for usar a função de VM Android.
+- Uma VM Android já configurada e testada, com o nome que você informar.
 
-## Preparar a VM (opcional)
-1. VirtualBox: https://www.virtualbox.org/wiki/Downloads
-2. Android-x86: https://www.android-x86.org/download
-3. Guia: https://www.android-x86.org/documentation/virtualbox.html
-4. Crie uma VM e anote o nome exato. Free Fire pode não ser compatível.
+## Preparar Android VM (opcional)
+1. Instale VirtualBox: https://www.virtualbox.org/wiki/Downloads
+2. Obtenha Android-x86: https://www.android-x86.org/download
+3. Siga a documentação de instalação em VM: https://www.android-x86.org/documentation/virtualbox.html
+4. Crie a VM e anote o nome exato. A compatibilidade com Free Fire não é garantida.
 
-## Build
-Instale .NET 8 SDK: https://dotnet.microsoft.com/download/dotnet/8.0
-No PowerShell, nesta pasta:
+## Instalar Roblox
+Instale Roblox pelo site oficial: https://www.roblox.com/download
+Depois, no programa, clique em **Localizar Roblox** e selecione `RobloxPlayerBeta.exe`, se a detecção automática não encontrar.
+
+## Compilar
+Instale o .NET 8 SDK: https://dotnet.microsoft.com/download/dotnet/8.0
+Abra PowerShell nesta pasta e rode:
 ```powershell
 dotnet restore
 dotnet build -c Release
 ```
-Executável: `bin\Release\net8.0-windows\VirtualGamingHub.exe`
+Executável de build:
+`bin\Release\net8.0-windows\GameVMManager.exe`
 
 ## Publicar um .exe independente
 ```powershell
 dotnet publish -c Release -r win-x64 --self-contained true /p:PublishSingleFile=true
 ```
-Saída: `bin\Release\net8.0-windows\win-x64\publish\VirtualGamingHub.exe`
+O executável final ficará em:
+`bin\Release\net8.0-windows\win-x64\publish\GameVMManager.exe`
