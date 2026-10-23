@@ -1,0 +1,33 @@
+# Virtual Gaming Hub — código-fonte
+
+Aplicativo Windows Forms em C#/.NET 8 para iniciar/parar uma VM VirtualBox já existente, abrir Roblox instalado no Windows e mostrar notas de compatibilidade para Free Fire.
+
+## Limitações
+Não é um emulador Android nem instala os jogos. Roblox é aberto nativamente no Windows, não dentro da VM. Free Fire pode não funcionar em Android-x86/VirtualBox; não há garantia de compatibilidade.
+
+## Requisitos
+- Windows 10/11 64 bits
+- .NET 8 SDK para compilar
+- VirtualBox e uma VM configurada para usar a função de PC virtual
+- Roblox instalado pelo site oficial: https://www.roblox.com/download
+
+## Preparar a VM (opcional)
+1. VirtualBox: https://www.virtualbox.org/wiki/Downloads
+2. Android-x86: https://www.android-x86.org/download
+3. Guia: https://www.android-x86.org/documentation/virtualbox.html
+4. Crie uma VM e anote o nome exato. Free Fire pode não ser compatível.
+
+## Build
+Instale .NET 8 SDK: https://dotnet.microsoft.com/download/dotnet/8.0
+No PowerShell, nesta pasta:
+```powershell
+dotnet restore
+dotnet build -c Release
+```
+Executável: `bin\Release\net8.0-windows\VirtualGamingHub.exe`
+
+## Publicar um .exe independente
+```powershell
+dotnet publish -c Release -r win-x64 --self-contained true /p:PublishSingleFile=true
+```
+Saída: `bin\Release\net8.0-windows\win-x64\publish\VirtualGamingHub.exe`
